@@ -9,13 +9,18 @@ import { workoutProgram } from "./utils";
 const defaultData = {};
 
 for (let index in workoutProgram) {
-  const woukoutData = workoutProgram[index];
+  const workoutData = workoutProgram[index];
   defaultData[index] = {};
 
-  for (let e of woukoutData.workout) {
+  for (let e of workoutData.warmup) {
+    defaultData[index][e.name] = "";
+  }
+
+  for (let e of workoutData.workout) {
     defaultData[index][e.name] = "";
   }
 }
+
 const selectedDisplay = ref(1);
 const data = ref(defaultData);
 const selectedWorkout = ref(-1);
@@ -28,13 +33,16 @@ const isWorkoutComplete = computed(() => {
     (exercise) => !!exercise
   );
 
-  console.log("isCompleteCheck", isCompleteCheck);
   return isCompleteCheck;
 });
+
+console.log("data outside", data.value);
 
 const firstIncompleteWorkoutIndex = computed(() => {
   const allWorkouts = data.value;
   if (!allWorkouts) return -1;
+
+  console.log("allWorkouts", allWorkouts);
 
   for (const [index, workout] of Object.entries(allWorkouts)) {
     const isComplete = Object.values(workout).every((exercise) => !!exercise);

@@ -14,7 +14,7 @@ const todaysFact = gymHealthFacts[randomNumber];
 <template>
   <section id="dashboard">
     <div class="card tip-container">
-      <h2>Welcome Smoldier</h2>
+      <h2>Welcome you beast</h2>
       <div>
         <p class="tip"><strong>Daily Tip</strong><br />{{ todaysFact }}</p>
       </div>
